@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap');
 
+body {
+    background-color: #A68365;
+}
 
 header img {
     padding-left: 1%;
@@ -7,29 +10,76 @@ header img {
 }
 
 header {
-    background-color: rgba(0, 251, 42, 0.466);
+    background-color: #73553C;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    height: 10%;
+    height: 50px;
     display: flex;
     align-items: center;
-}
-
-header ul {
-    margin-right: 0px;
 }
 
 header * {
     font-family: 'Open Sans', sans-serif;
     text-decoration: none;
-    color: rgb(255, 0, 0);
+    color: #000000;
     display: inline;
     margin: 5px;
 }
 
 h1 {
-    padding-top: 4%;
+    font-size: 2em;
+    padding-top: 40px;
     text-align: center;
+    color: #000000;
+}
+
+section h2 {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.5em;
+    text-align: center;
+    background-color: #593018;
+
+    color: #D9A441;
+    border-radius: 10px;
+}
+
+table {
+    font-family: 'Open Sans', sans-serif;
+    border-collapse: collapse;
+    width: 90%;
+
+    margin-left: 5%;
+    padding: 0;
+
+    border-style: solid;
+    border-color: #D9A441;
+    background-color: #73553C;
+}
+
+td {
+    text-align: center;
+    vertical-align: middle;
+
+}
+
+td img { 
+    height: 100px;
+    align-items: center
+}
+
+input {
+    width: 30px;
+}
+
+details ul {
+    background-color: #A68365;
+    border-radius: 2px;
+    border-style: double;
+
+    text-align: center;
+    list-style-type: none;
+
+    padding: 0;
 }
