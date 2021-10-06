@@ -10,7 +10,7 @@ var products_list = {
             Image: '../images/foods/lanche.png',
             Name: 'HAMBURGUER ARTESANAL',
             Ingredientes: ['Pão Artesanal', 'Hamburguer Bovino Artesanal', 'Queijo mussarela e prato', 'Alface', 'Tomate', 'Molho'],
-            /*
+
             Options: {
                 Pão: ['Brioche', 'Australiano', 'Tradicional'], 
                 Opcionais: [
@@ -23,41 +23,41 @@ var products_list = {
                     ['Cheddar', '3.00'],
                     ['Hambrguer', '8.00']
                 ]
-            },*/
+            },
             Price: '20,00'
         }
     ],
     PORÇÕES: [
         {
-            Image: '',
+            Image: '../images/foods/batata-frita.png',
             Name: 'Batata Frita',
             Details:'500g',
             //Options: opcionais_porcoes,
             Price: '20,00'
         },
         {
-            Image: '',
+            Image: '../images/foods/polenta-frita.png',
             Name: 'Polenta Frita',
             Details:'400g',
             //Options: opcionais_porcoes,
             Price: '18,00'
         },
         {
-            Image: '',
+            Image: '../images/foods/bolinho-de-mandioca.png',
             Name: 'Bolinho de Mandioca',
             Details:'400g',
             //Options: opcionais_porcoes,
             Price: '18,00'
         },
         {
-            Image: '',
+            Image: '../images/foods/frango-a-passarinho.png',
             Name: 'Frango a Passarinho',
             Details:'500g',
             //Options: opcionais_porcoes,
             Price: '20,00'
         },
         {
-            Image: '',
+            Image: '../images/foods/file-de-tilapia.png',
             Name: 'Filé de Tilapia',
             Details:'400g',
             //Options: opcionais_porcoes,
@@ -224,7 +224,6 @@ var products_list = {
             Image: '',
             Name: 'Caipirinha de Abacaxi',
             Options: {
-                Sabor: ['Abacaxi', 'Limão', 'Maracujá', 'Morango'],
                 Alcool: ['Vodka Smirnoff', 'Cachaça', 'Saquê', 'Steinhaeger']
             },
             Price: '15,00 '
@@ -233,7 +232,6 @@ var products_list = {
             Image: '',
             Name: 'Caipirinha de Limão',
             Options: {
-                Sabor: ['Maracujá', 'Morango'],
                 Alcool: ['Vodka Smirnoff', 'Cachaça', 'Saquê', 'Steinhaeger']
             },
             Price: '15,00 '
@@ -242,7 +240,6 @@ var products_list = {
             Image: '',
             Name: 'Caipirinha de Maracujá',
             Options: {
-                Sabor: ['Morango'],
                 Alcool: ['Vodka Smirnoff', 'Cachaça', 'Saquê', 'Steinhaeger']
             },
             Price: '15,00 '
@@ -376,6 +373,38 @@ window.addEventListener('load', () => {
                     td.appendChild(img)
                 } else if (p[0] == 'Price') {
                     td.innerHTML = `R$${p[1]}`
+                } else if (p[0] == 'Options') {
+                    let options = Object.entries(p[1])
+                    
+                    for (i in options) {
+                        let td_option = document.createElement('td')
+                        let details = document.createElement('details')
+                        let summary = document.createElement('summary')
+                        summary.innerHTML = `${options[i][0]}`
+
+                        for (j of options[i][1]) {
+                            let input = document.createElement('input')
+                            let label = document.createElement('label')
+
+                            input.type = 'checkbox'
+                            input.id = `${product['Name']}`
+                            input.name = 'optional'
+                            label.innerHTML = `${j}`
+
+                            details.appendChild(input)
+                            details.appendChild(label)
+                            details.appendChild(document.createElement('br'))
+                        }
+
+                        details.appendChild(summary)
+                        td_option.appendChild(details)
+                        td.appendChild(td_option)
+                    }
+                    
+                    
+                    
+
+
                 } else {
                   td.innerHTML = p[1]  
                 }
@@ -386,7 +415,7 @@ window.addEventListener('load', () => {
             let quantity = document.createElement('input')
             quantity.value = 0
             quantity.id = `${product['Name']}`
-            quantity.class = `${'foods'}`
+            quantity.class = 'foods'
             quantity.style = 'text-align: center; width: 20px'
 
             let lower = document.createElement('img')
@@ -418,22 +447,19 @@ window.addEventListener('load', () => {
 });
 
 function Order() {
-    let inputs = document.querySelectorAll('input')
+    let inputs = document.querySelectorAll('input.foods')
+    let optional = document.getElementsByName('optional')
     
     let order = []
     for (i of inputs) {
         if (i.value != 0) {
             order.push(`${i.id} -> ${i.value}`)
+            
+            
         }
+        console.log(i)
     }
-    send_order()
+    //window.location.assign('orders.html')
 }
 
-function send_order() {
-    const client = require('twilio')();
-    client.messages.create({
-        from: 'whatsapp:+5549989140512',
-        body: 'Testezin',
-        to: 'whatsapp:+5549991539356'
-    }).then(message => console.log(message.sid))
-}
+
