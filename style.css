@@ -10,6 +10,7 @@ header img {
 }
 
 header {
+    border-bottom-style: double;
     background-color: #73553C;
     position: fixed;
     top: 0;

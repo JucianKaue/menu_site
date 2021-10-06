@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="script.js"></script>
+    <script src="../script.js"></script>
     <link rel="stylesheet" href="../style.css">
     <title>Cardápio</title>
 </head>
@@ -12,15 +12,20 @@
     <header>
         <img src="../images/logo.jpeg" alt="">
         <nav>
-            <ul>
+            <ul class='left'>
                 <li><a href="menu.html">CARDÁPIO</a></li>
+            </ul>
+            <ul class="right">
+                <li>ver pedido</li>
             </ul>
         </nav>
     </header>
 
     <h1>CARDÁPIO</h1>
-    <div class="products">
+    <div class="menu">
+        <!--
         <section>
+            
             <h2>LANCHES</h2>
             <table>
                 <tbody>
@@ -39,7 +44,7 @@
                                     <li>Molho</li>
                                 </ul>
                             </details>
-                            <!--
+                            
                                 <ul>
                                 <li>Pão Artesanal</li>
                                 <li>Hamburguer Bovino Artesanal</li>
@@ -48,7 +53,7 @@
                                 <li>Tomate</li>
                                 <li>Molho</li>
                             </ul>
-                            -->
+                            
                             
                         </td>
                         <td>R$20,00</td>
@@ -71,6 +76,7 @@
                     </tr>
                 </tbody>
             </table>
+            
         </section>
 
         <section>
@@ -114,9 +120,10 @@
                 <li></li>
             </ul>
         </section>
-
+    -->
 
     </div>
+    <button onclick="Order()">Order</button>
     
     
 </body>
