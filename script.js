@@ -4,98 +4,80 @@ let opcionais_porcoes = [
     ['Calabresa', 5],
     ['Cheddar', 5]
 ]
+let opcionais_hamburguer = {
+    Pão: ['Brioche', 'Australiano', 'Tradicional'], 
+    Opcionais: [
+        ['Queijo', '3.00'], 
+        ['Calabresa', '3.00'],
+        ['Bacon', '3.00'],
+        ['Pepino', '3.00'],
+        ['Cebola roxa levemente caramelizada', '3.00'],
+        ['Cebola Caramelizada', '3.00'],
+        ['Cheddar', '3.00'],
+        ['Hambrguer', '8.00']
+    ]
+}
+let opcionais_drinks = [
+    'Vodka Smirnoff', 'Cachaça', 'Saquê', 'Steinhaeger'
+]
 var products_list = {
     LANCHES: [
         {
             Image: '../images/foods/lanche.png',
             Name: 'HAMBURGUER ARTESANAL',
             Ingredientes: ['Pão Artesanal', 'Hamburguer Bovino Artesanal', 'Queijo mussarela e prato', 'Alface', 'Tomate', 'Molho'],
-
-            Options: {
-                Pão: ['Brioche', 'Australiano', 'Tradicional'], 
-                Opcionais: [
-                    ['Queijo', '3.00'], 
-                    ['Calabresa', '3.00'],
-                    ['Bacon', '3.00'],
-                    ['Pepino', '3.00'],
-                    ['Cebola roxa levemente caramelizada', '3.00'],
-                    ['Cebola Caramelizada', '3.00'],
-                    ['Cheddar', '3.00'],
-                    ['Hambrguer', '8.00']
-                ]
-            },
             Price: '20,00'
         }
     ],
     PORÇÕES: [
         {
             Image: '../images/foods/batata-frita.png',
-            Name: 'Batata Frita',
-            Details:'500g',
-            //Options: opcionais_porcoes,
+            Name: 'Batata Frita - 500g',
             Price: '20,00'
         },
         {
             Image: '../images/foods/polenta-frita.png',
-            Name: 'Polenta Frita',
-            Details:'400g',
-            //Options: opcionais_porcoes,
+            Name: 'Polenta Frita - 400g',
             Price: '18,00'
         },
         {
             Image: '../images/foods/bolinho-de-mandioca.png',
-            Name: 'Bolinho de Mandioca',
-            Details:'400g',
-            //Options: opcionais_porcoes,
+            Name: 'Bolinho de Mandioca - 400g',
             Price: '18,00'
         },
         {
             Image: '../images/foods/frango-a-passarinho.png',
-            Name: 'Frango a Passarinho',
-            Details:'500g',
-            //Options: opcionais_porcoes,
+            Name: 'Frango a Passarinho - 500g',
             Price: '20,00'
         },
         {
             Image: '../images/foods/file-de-tilapia.png',
-            Name: 'Filé de Tilapia',
-            Details:'400g',
-            //Options: opcionais_porcoes,
+            Name: 'Filé de Tilapia - 400g',
             Price: '40,00'
         },
         {
             Image: '',
-            Name: 'Filé de Pescada',
-            Details:'400g',
-            //Options: opcionais_porcoes,
+            Name: 'Filé de Pescada - 400g',
             Price: '40,00'
         },
         {
             Image: '',
-            Name: 'Costelinha de Tambaqui',
-            Details:'400g',
-            //Options: opcionais_porcoes,
+            Name: 'Costelinha de Tambaqui - 400g',
             Price: '40,00'
         },
         {
             Image: '',
-            Name: 'Camarão Crocante',
-            Details:'400g',
-            //Options: opcionais_porcoes,
+            Name: 'Camarão Crocante - 400g',
             Price: '40,00'
         },
         {
             Image: '',
-            Name: 'Camarão a Milanesa',
-            Details:'400g',
-            //Options: opcionais_porcoes,
+            Name: 'Camarão a Milanesa - 400g',
             Price: '40,00'
         },
         {
             Image: '',
-            Name: 'Bolinho de Siri',
-            Details:'400g',
-            //Options: opcionais_porcoes,
+            Name: 'Bolinho de Siri - 400g',
             Price: '40,00'
         },
         
@@ -223,39 +205,26 @@ var products_list = {
         {
             Image: '',
             Name: 'Caipirinha de Abacaxi',
-            Options: {
-                Alcool: ['Vodka Smirnoff', 'Cachaça', 'Saquê', 'Steinhaeger']
-            },
             Price: '15,00 '
         },
         {
             Image: '',
             Name: 'Caipirinha de Limão',
-            Options: {
-                Alcool: ['Vodka Smirnoff', 'Cachaça', 'Saquê', 'Steinhaeger']
-            },
             Price: '15,00 '
         },
         {
             Image: '',
             Name: 'Caipirinha de Maracujá',
-            Options: {
-                Alcool: ['Vodka Smirnoff', 'Cachaça', 'Saquê', 'Steinhaeger']
-            },
             Price: '15,00 '
         },
         {
             Image: '',
             Name: 'Caipirinha de Morango',
-            Options: {
-                Alcool: ['Vodka Smirnoff', 'Cachaça', 'Saquê', 'Steinhaeger']
-            },
             Price: '15,00 '
         },
         {
             Image: '',
             Name: 'Gin tropical com RedBull',
-            Options: [],
             Price: '20,00 '
         }
 
@@ -331,7 +300,7 @@ var products_list = {
     ]
 }
 
-window.addEventListener('load', () => {
+function load_menu() {
     let menu = document.querySelector('div.menu')
     for (header in products_list) {
         // Creates a section for a type of product
@@ -374,36 +343,6 @@ window.addEventListener('load', () => {
                 } else if (p[0] == 'Price') {
                     td.innerHTML = `R$${p[1]}`
                 } else if (p[0] == 'Options') {
-                    let options = Object.entries(p[1])
-                    
-                    for (i in options) {
-                        let td_option = document.createElement('td')
-                        let details = document.createElement('details')
-                        let summary = document.createElement('summary')
-                        summary.innerHTML = `${options[i][0]}`
-
-                        for (j of options[i][1]) {
-                            let input = document.createElement('input')
-                            let label = document.createElement('label')
-
-                            input.type = 'checkbox'
-                            input.id = `${product['Name']}`
-                            input.name = 'optional'
-                            label.innerHTML = `${j}`
-
-                            details.appendChild(input)
-                            details.appendChild(label)
-                            details.appendChild(document.createElement('br'))
-                        }
-
-                        details.appendChild(summary)
-                        td_option.appendChild(details)
-                        td.appendChild(td_option)
-                    }
-                    
-                    
-                    
-
 
                 } else {
                   td.innerHTML = p[1]  
@@ -415,7 +354,7 @@ window.addEventListener('load', () => {
             let quantity = document.createElement('input')
             quantity.value = 0
             quantity.id = `${product['Name']}`
-            quantity.class = 'foods'
+            quantity.name = 'foods'
             quantity.style = 'text-align: center; width: 20px'
 
             let lower = document.createElement('img')
@@ -444,22 +383,109 @@ window.addEventListener('load', () => {
         
         menu.appendChild(section)
     }
-});
+}
+
+function load_cart() {
+    let order_list = document.querySelector('div.order')
+    let pedido = localStorage.pedido.split(',')
+
+    let table = document.createElement('table')
+    if (pedido.length != 0) {
+
+        for (product of pedido) {
+            let tr = document.createElement('tr')
+            for (product_data in product[1]) {
+                let td = document.createElement('td')
+                td.innerHTML = `${product}`
+                tr.appendChild(td)
+            }
+            let td_options = document.createElement('td')
+            if (product == 'HAMBURGUER ARTESANAL') {
+                for (op of Object.entries(opcionais_hamburguer)) {
+                    if (op[0] == 'Pão') {
+                        let p = document.createElement('p')
+                        p.innerHTML = 'Pão:'
+                        td_options.appendChild(p)
+                        for (o of op[1]) {
+                            let input = document.createElement('input')
+                            let label = document.createElement('label')
+
+                            input.type = 'radio'
+                            input.id = `${o}`
+                            input.name = 'pão'
+
+                            label.innerHTML = `${o}`
+                            
+
+                            td_options.appendChild(input)
+                            td_options.appendChild(label)
+                        }
+                        
+                    } else if (op[0] == 'Opcionais') {
+                        let p = document.createElement('p')
+                        p.innerHTML = 'Opcionais:'
+                        td_options.appendChild(p)
+                        for (o of op[1]) {
+                            let input = document.createElement('input')
+                            let label = document.createElement('label')
+
+                            input.type = 'checkbox'
+                            input.id = `${o}`
+                            input.name = `${o}`
+
+                            label.innerHTML = `${o[0]} +R$${o[1]}`
+                            
+
+                            td_options.appendChild(input)
+                            td_options.appendChild(label)
+                            td_options.appendChild(document.createElement('br'))
+                        }
+                        
+                    }
+                }
+                td_options.style = "text-align: left;"
+                tr.appendChild(td_options)
+            } else if (product.substr(0, 10) == 'Caipirinha') {
+                for (op of opcionais_drinks) {
+                    
+                        let input = document.createElement('input')
+                        let label = document.createElement('label')
+
+                        input.type = 'radio'
+                        input.id = `${op}`
+                        input.name = 'alcool'
+
+                        label.innerHTML = `${op}`
+
+                        td_options.appendChild(input)
+                        td_options.appendChild(label)
+                    
+                }
+                tr.appendChild(td_options)
+            }
+            
+            table.appendChild(tr)
+        }
+        order_list.appendChild(table)
+    }
+}
 
 function Order() {
-    let inputs = document.querySelectorAll('input.foods')
-    let optional = document.getElementsByName('optional')
-    
-    let order = []
+    let inputs = document.getElementsByName('foods')
+    let pedido = []
     for (i of inputs) {
         if (i.value != 0) {
-            order.push(`${i.id} -> ${i.value}`)
-            
-            
+            for (let j = 0; j < i.value; j++) {
+                pedido.push([i.id, i.value])
+            }
         }
-        console.log(i)
     }
-    //window.location.assign('orders.html')
+    localStorage.setItem('pedido', pedido)
+    window.location.assign('./cart.html')
+}
+
+function send_order() {
+    
 }
 
 

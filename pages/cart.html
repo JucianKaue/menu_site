@@ -6,25 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="../script.js"></script>
     <link rel="stylesheet" href="../style.css">
-    <title>Cardápio</title>
+    <title>Pedido</title>
 </head>
-<body onload="load_menu()">
+<body onload="load_cart()">
     <header>
         <img src="../images/logo.jpeg" alt="">
         <nav>
-            <ul class='left'>
+            <ul>
                 <li><a href="menu.html">CARDÁPIO</a></li>
-            </ul>
-            <ul class="right">
-                <li><a href="cart.html">VER PEDIDO</a></li>
+                <li><a href="#">SOBRE NÓS</a></li>
             </ul>
         </nav>
     </header>
+    <h1>Pedido</h1>
+    <div class="order"></div>
 
-    <h1>CARDÁPIO</h1>
-    <div class="menu"></div>
-    <button onclick="Order()">FECHAR PEDIDO</button>
-    
-    
+    <button onclick="send_order()">CONFIRMAR PEDIDO</button>
 </body>
 </html>
