@@ -1,14 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap');
 
-body {
-    background-color: #A68365;
-}
-
-header img {
-    padding-left: 1%;
-    height: 92%;
-}
-
+/*--HEADER--*/
 header {
     border-bottom-style: double;
     background-color: #73553C;
@@ -17,16 +9,44 @@ header {
     left: 0;
     right: 0;
     height: 50px;
-    display: flex;
-    align-items: center;
+    font-family: 'Open Sans', sans-serif;
 }
 
-header * {
-    font-family: 'Open Sans', sans-serif;
+img#logo {
+    height: 48px;
+    padding: 1px;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+  
+li {
+    float: left;
+}
+  
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
     text-decoration: none;
-    color: #000000;
-    display: inline;
-    margin: 5px;
+}
+
+li a:hover:not(.active) {
+    background-color: #523925;
+}
+
+.active {
+    background-color: #04aa44a8;
+}
+
+/* BODY */
+body {
+    background-color: #A68365;
 }
 
 h1 {
