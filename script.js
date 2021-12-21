@@ -343,7 +343,6 @@ function load_menu() {
                 } else if (p[0] == 'Price') {
                     td.innerHTML = `R$${p[1]}`
                 } else if (p[0] == 'Options') {
-
                 } else {
                   td.innerHTML = p[1]  
                 }
@@ -351,15 +350,23 @@ function load_menu() {
                 tr.appendChild(td)
             }
 
-            let quantity = document.createElement('input')
-            quantity.value = 0
-            quantity.id = `${product['Name']}`
-            quantity.name = 'foods'
-            quantity.style = 'text-align: center; width: 20px'
-            
+            /*
+            let add = document.createElement('button')
+            add.innerHTML = '<img style="width: 30px; height: 30px" src="../images/menu/icons/shopping-icon.png" alt="">'
+            add.id = `${product['Name']}`
+            add.name = 'foods'
+            add.style = 'text-align: center; width: 40px; height: 40px'
+            */
+            let add = document.createElement('img')
+            add.src = "../images/menu/icons/shopping-icon.png"
+            add.id = "img-buy"
+            add.style = 'width: 40px; height: 40px; border: double; background-color: #238032;'
+            add.onclick = 'Add_product'
+            Add_product()
+
             let td = document.createElement('td')
             
-            td.appendChild(quantity)
+            td.appendChild(add)
             tr.appendChild(td)
             tbody.appendChild(tr)
         }
@@ -375,8 +382,8 @@ function load_cart() {
     let order_list = document.querySelector('div.order')
     let pedido = localStorage.pedido.split(',')
 
-    let table = document.createElement('table')
     if (pedido.length != 0) {
+        let table = document.createElement('table')
         let porcoes_name = []
         for (p in products_list['PORÇÕES']) {
             porcoes_name.push(products_list['PORÇÕES'][p]['Name'])
@@ -477,52 +484,5 @@ function load_cart() {
             table.appendChild(tr)
         }
         order_list.appendChild(table)
-    }
-}
-
-function Order() {
-    let inputs = document.getElementsByName('foods')
-    let pedido = []
-    for (i of inputs) {
-        if (i.value != 0) {
-            for (let j = 0; j < i.value; j++) {
-                pedido.push([i.id, i.value])
-            }
-        }
-    }
-    localStorage.setItem('pedido', pedido)
-    window.location.assign('./cart.html')
-}
-
-function send_order() {
-    let txt_order = ''
-    let tr = document.querySelectorAll('tr')
-    for (let i = 0; i < tr.length; i++) {
-        if (i % 2 == 0) { // Feito para corrigir algum bug criado anteriormente, o qual não tive tempo de corrigir
-            let td_ = tr[i].querySelector('td').innerText
-            if (td_ = 'HAMBURGUER ARTESANAL') {
-                txt_order += '==== HAMBURGUER ARTESANAL ===='
-                let bread_options = tr[i].querySelectorAll('td')[1].querySelectorAll('input.bread')
-                txt_order += 'Pão: ' 
-                for (j in bread_options) {
-                    if (bread_options[j].checked) {
-                        txt_order += `${bread_options[j].id} `
-                    }
-                }
-                txt_order += 'Adicionais: '
-                let adicionais = tr[i].querySelectorAll('td')[1].querySelectorAll('input.adicionais')
-                
-                for (h in adicionais) {
-                    if (adicionais[h].checked) {
-                        txt_order += `${adicionais[h].id}, `
-                    }
-                }
-                
-                
-                
-                
-                
-            }
-        }
     }
 }
