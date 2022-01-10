@@ -350,19 +350,14 @@ function load_menu() {
                 tr.appendChild(td)
             }
 
-            /*
-            let add = document.createElement('button')
-            add.innerHTML = '<img style="width: 30px; height: 30px" src="../images/menu/icons/shopping-icon.png" alt="">'
-            add.id = `${product['Name']}`
-            add.name = 'foods'
-            add.style = 'text-align: center; width: 40px; height: 40px'
-            */
             let add = document.createElement('img')
             add.src = "../images/menu/icons/shopping-icon.png"
             add.id = `${Object.entries(product)[1][1]}`
             add.className = 'img-buy'
             add.style = 'width: 40px; height: 40px; border: double; background-color: #238032;'
-            add.onclick = () => { add_product_to_cart(product=add.id)}
+            add.onclick = () => {
+                add_product_to_cart(product=add.id)
+            }
             
             let td = document.createElement('td')
 
@@ -380,7 +375,7 @@ function load_menu() {
 
 function load_cart() {
     let order_list = document.querySelector('div.order')
-    let pedido = localStorage.pedido.split(',')
+    let pedido = localStorage.getItem('order').split(';')
 
     if (pedido.length != 0) {
         let table = document.createElement('table')
@@ -461,6 +456,7 @@ function load_cart() {
 
                     td_options.appendChild(input)
                     td_options.appendChild(label)
+                    td_options.appendChild(document.createElement('br'))
                 }
                 counter++ 
                 tr.appendChild(td_options)
@@ -469,14 +465,16 @@ function load_cart() {
                     let input = document.createElement('input')
                     let label = document.createElement('label')
 
+                    input.style.borderLeft = '0px;'
                     input.type = 'checkbox'
-                    input.id = `${op}`
-                    input.name = `pedido-${counter}`
+                    input.id = `${o}`
+                    input.name = `${o}`
 
                     label.innerHTML = `${op[0]} +R$${op[1]}`
 
                     td_options.appendChild(input)
                     td_options.appendChild(label)
+                    td_options.appendChild(document.createElement('br'))
                 }
                 counter++ 
                 tr.appendChild(td_options) 
@@ -488,6 +486,12 @@ function load_cart() {
 }
 
 function add_product_to_cart(product) {
-    
+    if (localStorage.getItem('order') == null) {
+        localStorage.setItem('order', `${product};`)
+    } else {
+        let order = localStorage.getItem('order')
+        localStorage.setItem('order', `${order}${product};`)
+    }
+    alert(localStorage.getItem('order'))
     alert(`O produto ${product} foi adicionado ao carrinho.`)
 }
