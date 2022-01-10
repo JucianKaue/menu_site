@@ -359,13 +359,13 @@ function load_menu() {
             */
             let add = document.createElement('img')
             add.src = "../images/menu/icons/shopping-icon.png"
-            add.id = "img-buy"
+            add.id = `${Object.entries(product)[1][1]}`
+            add.className = 'img-buy'
             add.style = 'width: 40px; height: 40px; border: double; background-color: #238032;'
-            add.onclick = 'Add_product'
-            Add_product()
-
-            let td = document.createElement('td')
+            add.onclick = () => { add_product_to_cart(product=add.id)}
             
+            let td = document.createElement('td')
+
             td.appendChild(add)
             tr.appendChild(td)
             tbody.appendChild(tr)
@@ -485,4 +485,9 @@ function load_cart() {
         }
         order_list.appendChild(table)
     }
+}
+
+function add_product_to_cart(product) {
+    
+    alert(`O produto ${product} foi adicionado ao carrinho.`)
 }
