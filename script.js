@@ -374,9 +374,11 @@ function load_menu() {
 }
 
 function load_cart() {
-    let order_list = document.querySelector('div.order')
     let pedido = localStorage.getItem('order').split(';')
 
+    let container = document.createElement('div')
+    container.class = "container"
+    container.innerHTML = '<h2 style="text-align: center;">PEDIDO</h2>'
     if (pedido.length != 0) {
         let table = document.createElement('table')
         let porcoes_name = []
@@ -479,10 +481,54 @@ function load_cart() {
                 counter++ 
                 tr.appendChild(td_options) 
             }
+
+            let td_default_options = document.createElement('td')
+
+
             table.appendChild(tr)
         }
-        order_list.appendChild(table)
+        container.appendChild(table)
     }
+
+    let address = document.createElement('div.address')
+    address.innerHTML = '<h2 style="text-align: center;">ENDEREÇOS</h2>'
+    let addresses_table = document.createElement('table')
+    if (localStorage.getItem('endereço') == null) {
+        let message = document.createElement('tr')
+        message.innerHTML = '<p>Nenhum endereço adicionado. </p>'
+        addresses_table.appendChild(message)
+    } else {
+
+    }
+
+    let add_address = document.createElement('tr')
+    
+    let a_add_address = document.createElement('a')
+    a_add_address.href = 'add_address.html'
+    a_add_address.innerHTML = 'Adicionar novo endereço.'
+    /*
+    let button_add_address = document.createElement('button')
+    button_add_address.style = 'width: 90%; margin-left: 5%; margin-bottom: 10px; padding: 3px;'
+    button_add_address.id = 'add_address'
+    button_add_address.innerHTML = 'ADICIONAR ENDEREÇO'
+    add_address.appendChild(button_add_address)
+    */
+
+    add_address.appendChild(a_add_address)
+    addresses_table.appendChild(add_address)
+    address.appendChild(addresses_table)
+
+    
+
+
+
+    let confirm_button = document.createElement('button')
+    confirm_button.innerHTML = 'CONFIRMAR PEDIDO'
+    confirm_button.onclick = () => {send_order()}
+
+    document.body.appendChild(address)
+    document.body.appendChild(container)
+    document.body.appendChild(confirm_button)
 }
 
 function add_product_to_cart(product) {
@@ -495,3 +541,48 @@ function add_product_to_cart(product) {
     alert(localStorage.getItem('order'))
     alert(`O produto ${product} foi adicionado ao carrinho.`)
 }
+
+function send_order() {
+    alert('Botão de enviar pedido')
+}
+/*
+function show_form_add_adress() {
+    let form_options = ['País', 'Nome Completo', 'Telefone', 'CEP', 'Endereço', 'Número da Residência', 'Complemento', 'Bairro', 'Cidade', 'Estado', ]
+    alert('Botão de adicionar endereço')
+    let dialog = document.createElement('div')
+    let form = document.createElement('form')
+    form.id = 'address'
+    for (form_option in form_options) {
+        let label = document.createElement('label')
+        label.for = `${form_option}`
+        label.innerHTML = `${form_option}: `
+
+        let input = document.createElement('input')
+        input.id = `${form_option}`
+        input.required
+
+        form.appendChild(lebel)
+        form.appendChild(input)
+    }
+    let button = document.createElement('button')
+    button.onclick = () => {
+        document.querySelector('form.address')
+        let str 
+        for (e in form.querySelector('input')) {
+            str += `${e.value}, `
+        }
+
+        if (localStorage.getItem == null) {
+            localStorage.setItem(`address`, `${str}`)
+        } else {
+            let storaged_address = localStorage.getItem('address')
+            localStorage.setItem('address', `${storaged_address} | ${str}`)
+        }
+    }
+    dialog.appendChild(form)
+    document.body.appendChild(dialog)
+
+    dialog.showModal()
+    
+}
+*/

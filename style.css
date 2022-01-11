@@ -72,7 +72,6 @@ table {
     width: 90%;
 
     margin-left: 5%;
-    padding: 0;
 
     border-style: solid;
     border-color: #D9A441;
@@ -108,8 +107,7 @@ details ul {
 button {
     margin-left: 42%;
     margin-top: 10px;
-    background-color: rgb(223, 126, 0);
+    background-color: rgb(245, 135, 10);
     border-radius: 5px;
-
     width: 16%;
 }
