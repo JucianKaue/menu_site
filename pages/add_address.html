@@ -42,22 +42,22 @@
     <script>
         function save_form() {
             let str_address = `Nome: ${document.getElementById('Nome').value} 
-                Telefone: ${document.getElementById('Telefone').value}
-                CEP: ${document.getElementById('CEP').value}
-                Endereço: ${document.getElementById('Endereço').value}
-                Número da Residência: ${document.getElementById('Número da residência').value}
-                Complemento: ${document.getElementById('Complemento').value}
-                Bairro: ${document.getElementById('Bairro').value}
-                Cidade: ${document.getElementById('Cidade').value}
-                Estado: ${document.getElementById('Estado').value}
-                País: ${document.getElementById('País').value}
+Telefone: ${document.getElementById('Telefone').value}
+CEP: ${document.getElementById('CEP').value}
+Endereço: ${document.getElementById('Endereço').value}
+Número da Residência: ${document.getElementById('Número da residência').value}
+Complemento: ${document.getElementById('Complemento').value}
+Bairro: ${document.getElementById('Bairro').value}
+Cidade: ${document.getElementById('Cidade').value}
+Estado: ${document.getElementById('Estado').value}
+País: ${document.getElementById('País').value}
                 ;`
 
             if (localStorage.getItem('address') == null) {
                 localStorage.setItem(`address`, `${str_address}`)
             } else {
                 let storaged_address = localStorage.getItem('address')
-                localStorage.setItem('address', `${storaged_address} ${str_address}`)
+                localStorage.setItem('address', `${storaged_address}${str_address}`)
             }
             alert(localStorage.getItem('address'))
             window.location.href = "cart.html"
